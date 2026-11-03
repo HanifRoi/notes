@@ -28,7 +28,7 @@ class NoteController extends Controller
     public function edit(Note $note)
     {   
         $note = Note::findOrFail($note->id);
-        return view('note.edit');
+        return view('note.edit', compact('note'));
     }
 
     public function update(Note $note, NoteCreateRequest $request)
