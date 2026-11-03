@@ -8,6 +8,7 @@ use Database\Seeders\NoteSeeder;
 use Database\Seeders\UserSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use PhpParser\Node\Expr\FuncCall;
 use Tests\TestCase;
 
 use function PHPUnit\Framework\assertNotNull;
@@ -67,5 +68,15 @@ class NoteTest extends TestCase
             'title'=>'mencoba',
             'note'=>'mencoba'
         ]);
+    }
+
+    public function testDeleteSuccess()
+    {
+        $this->seed([UserSeeder::class, NoteSeeder::class]);
+        $note = Note::limit(1)->first();
+        $this->actingAs($note->user);
+        $response = $this->delete('note/'. $note->id);
+        $response->assertSessionHas('sukses', 'Data berhasil dihapus')
+        ->assertRedirect(route('note.index'));
     }
 }

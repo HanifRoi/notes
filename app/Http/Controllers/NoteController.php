@@ -27,6 +27,9 @@ class NoteController extends Controller
 
     public function edit(Note $note)
     {   
+        if($note->user_id !== auth()->id()){
+            abort(403, 'Anda dilarang mengakses note ini');
+        }
         $note = Note::findOrFail($note->id);
         return view('note.edit', compact('note'));
     }
@@ -39,4 +42,15 @@ class NoteController extends Controller
         $note->update($request->validated());
         return redirect()->route('note.index')->with('sukses', 'Data berhasil diupdate');
     }
+
+    public function destroy(Note $note)
+    {
+        if($note->user_id !== auth()->id()){
+            abort(403, 'Anda dilarang mengakses note ini');
+        }
+        $note->delete();
+        return redirect()->route('note.index')->with('sukses', 'Data berhasil dihapus');
+    }
+
+
 }

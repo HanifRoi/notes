@@ -21,7 +21,12 @@
             <td>{{ $d->title }}</td>
             <td>{{ $d->note }}</td>
             <td>
-                <a href="/note/{{ $d->id }}/edit">Edit</a>
+                <a href="/note/{{ $d->id }}/edit"><button type="button">Edit</button></a>
+                <form action="/note/{{ $d->id }}" method="POST" style="display: inline">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" onclick="confirm('Apakah anda yakin?')">Delete</button>
+                </form>
             </td>
         @endforeach
         </tr>
