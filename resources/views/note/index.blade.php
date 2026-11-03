@@ -42,6 +42,10 @@
             </tbody>
         </table>
        </div>
+       <form action="/auth/logout" method="POST" style="margin-top: 50px">
+        @csrf
+        <button type="submit" class="bg-red-500 rounded text-white hover:bg-red-700 transition text-xl py-1 px-3" onclick=" confirm('Yakin ingin keluar?') ">Logout</button>
+        </form>
     </div> 
     
 </body>

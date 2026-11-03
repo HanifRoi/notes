@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 //untuk yang sudah login
 Route::controller(NoteController::class)->middleware('auth')->group(function(){
