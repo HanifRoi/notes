@@ -2,7 +2,10 @@
 
 namespace Tests\Feature;
 
+use App\Models\Note;
 use App\Models\User;
+use Database\Seeders\NoteSeeder;
+use Database\Seeders\UserSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -44,5 +47,25 @@ class NoteTest extends TestCase
 
        $response->assertSessionHasErrors(['title', 'note']);
        $this->assertDatabaseCount('notes', 0);
+    }
+
+    public function testUpdateSuccess()
+    {
+        $this->seed([UserSeeder::class, NoteSeeder::class]);
+
+       
+        $note = Note::limit(1)->first();
+        $this->actingAs($note->user);
+       
+        $response = $this->put('note/'. $note->id, [
+            'title'=>'mencoba',
+            'note'=>'mencoba'
+        ]);
+
+        assertNotNull($response);
+        $this->assertDatabaseHas('notes', [
+            'title'=>'mencoba',
+            'note'=>'mencoba'
+        ]);
     }
 }

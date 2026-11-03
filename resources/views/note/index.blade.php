@@ -21,7 +21,7 @@
             <td>{{ $d->title }}</td>
             <td>{{ $d->note }}</td>
             <td>
-                
+                <a href="/note/{{ $d->id }}/edit">Edit</a>
             </td>
         @endforeach
         </tr>

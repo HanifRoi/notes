@@ -23,13 +23,17 @@ Route::controller(NoteController::class)->middleware('auth')->group(function(){
     Route::get('/note', 'index')->name('note.index');
     Route::get('/note/create', 'create')->name('note.create');
     Route::post('/note', 'store')->name('note.store');
+
+    Route::get('/note/{note}/edit', 'edit');
+    Route::put('/note/{note}', 'update');
+    Route::delete('/note/{note}', 'destroy');
 });
 
 //untuk yang belum login
 Route::controller(AuthController::class)->middleware('guest')->group(function(){
     Route::get('/auth/register', 'showRegister')->name('register');
     Route::post('/auth/register', 'register');
-    
+
     Route::get('/auth/login', 'showLogin')->name('login');
     Route::post('/auth/login', 'login');
 });

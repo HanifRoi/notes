@@ -24,4 +24,19 @@ class NoteController extends Controller
         auth()->user()->notes()->create($request->validated());
         return redirect()->route('note.index')->with('sukses', 'Data berhasil disimpan');
     }
+
+    public function edit(Note $note)
+    {   
+        $note = Note::findOrFail($note->id);
+        return view('note.edit');
+    }
+
+    public function update(Note $note, NoteCreateRequest $request)
+    {
+        if($note->user_id !== auth()->id()){
+            abort(403, 'Anda dilarang mengakses note ini');
+        }
+        $note->update($request->validated());
+        return redirect()->route('note.index')->with('sukses', 'Data berhasil diupdate');
+    }
 }
