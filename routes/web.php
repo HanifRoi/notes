@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\NoteController;
 use Illuminate\Support\Facades\Route;
 
@@ -17,16 +18,28 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-
+//untuk yang sudah login
 Route::controller(NoteController::class)->middleware('auth')->group(function(){
     Route::get('/note', 'index')->name('note.index');
     Route::get('/note/create', 'create')->name('note.create');
     Route::post('/note', 'store')->name('note.store');
 });
 
+//untuk yang belum login
+Route::controller(AuthController::class)->middleware('guest')->group(function(){
+    Route::get('/auth/register', 'showRegister')->name('register');
+    Route::post('/auth/register', 'register');
+    
+    Route::get('/auth/login', 'showLogin')->name('login');
+    Route::post('/auth/login', 'login');
+});
 
+//untuk yang sudah login
+Route::middleware('auth')->group(function(){
+    Route::post('auth/logout', [AuthController::class, 'logout']);
+});
 //test
-Route::get('/login', function () {
-    return 'Halaman Login Belum Dibuat';
-})->name('login');
+// Route::get('/login', function () {
+//     return 'Halaman Login Belum Dibuat';
+// })->name('login');
 
