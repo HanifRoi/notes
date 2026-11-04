@@ -27,11 +27,17 @@
                 <div>
                     <label for="" class=" block font-semibold text-gray-800 text-xl mb-2">Title</label><br>
                     <input class="w-full focus:outline-none focus:ring-2 focus:ring-blue-500 transition rounded-lg py-2 border border-gray-500" type="text" name="title" value="{{ old('title') }}">
+                    @error('title')
+                        <p class="text-red-500 mt-1 text-sm">{{ $message }}</p>
+                    @enderror
             </div>
             <br>
             <div>
                     <label for="" class="block text-gray-800 text-xl font-semibold mb-2">Note</label><br>
                     <textarea rows="6" class="w-full focus:outline-none focus:ring-2 focus:ring-blue-500 transition rounded-lg border border-gray-500" name="note"></textarea>
+                    @error('note')
+                        <p class="text-red-500 mt-1 text-sm">{{ $message }}</p>
+                    @enderror
             </div>
             <br>
             
