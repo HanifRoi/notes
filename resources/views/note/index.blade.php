@@ -7,12 +7,12 @@
     @vite('resources/css/app.css')
 </head>
 <body class="bg-gray-100 text-gray-800 font-sans">
-    <div class="max-w-5x1 mx-auto px-4 py-10">
+    <div class="max-w-5xl mx-auto px-4 py-10">
        <div class="flex justify-between items-center mb-8">
-        <h1 class="text-2x1 font-bold">Daftar Note</h1>
-         <a href="/note/create" class="bg-green-500 hover:bg-green-800 font-semibold py-0.5 px-2 rounded shadow transition">+ Add Note</a>
+        <h1 class="text-2xl font-bold">Daftar Note</h1>
+         <a href="/note/create" class="bg-green-500 hover:bg-green-800 font-semibold py-0.5 px-2 rounded shadow transition text-white">+ Add Note</a>
        </div>
-       <div class="bg-white rounded-x1 shadow-md overflow-hidden">
+       <div class="bg-white rounded-xl shadow-md overflow-hidden">
         <table class="w-full text-left border-collapse">
             <thead class="bg-gray-50 border-b border-gray-400">
                 <tr>
