@@ -34,7 +34,7 @@
                             <form action="/note/{{ $d->id }}" method="POST" style="display: inline">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" onclick="confirm('Apakah anda yakin?')"  class="bg-red-500 rounded px-3 py-2 hover:bg-red-700 text-white shadow-sm text-xs font-medium transition">Delete</button>
+                                <button type="submit" onclick="return confirm('Apakah anda yakin?')"  class="bg-red-500 rounded px-3 py-2 hover:bg-red-700 text-white shadow-sm text-xs font-medium transition">Delete</button>
                             </form>
                         </td>
                     </tr>
